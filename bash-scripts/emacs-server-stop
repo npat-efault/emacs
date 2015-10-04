@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# emacs-server-stop
+#
+# Save buffers, delete clients, and kill emacs server
+# See function "npat-kill-emacs-server"
+# in "~/lib/emacs/npat/functions.el"
+#
+/usr/bin/emacsclient -e '(npat-kill-emacs-server)'
