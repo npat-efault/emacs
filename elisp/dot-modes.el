@@ -253,13 +253,15 @@
 	  (lambda ()
 	    (local-set-key (kbd "C-c C-r") 'go-remove-unused-imports)
 	    (local-set-key (kbd "C-c i") 'go-goto-imports)
-	    (local-set-key (kbd "M-.") 'godef-jump)))
+	    (local-set-key (kbd "M-.") 'godef-jump)
+	    (if (not (string-match "go" compile-command))
+		(set (make-local-variable 'compile-command)
+		     "go generate && go install -v && go test -v && go vet"))))
 (add-hook 'before-save-hook 'gofmt-before-save)
 (defun go-run ()
   "run current buffer"
   (interactive)
   (compile (concat "go run " (buffer-file-name))))
-
 (load-file "~/src/golang.org/x/tools/cmd/oracle/oracle.el")
 (load-file "~/src/golang.org/x/tools/refactor/rename/rename.el")
 
