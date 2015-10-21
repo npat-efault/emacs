@@ -9,3 +9,4 @@
 (global-set-key [f4] 'other-window)
 ;;(global-set-key [C-f4] 'make-frame-command)
 (global-set-key [menu] 'menu-bar-mode)
+(global-set-key [?\C-x ?g] 'magit-status)
