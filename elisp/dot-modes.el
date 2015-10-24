@@ -266,6 +266,7 @@
   "build current buffer"
   (interactive "sArgs:")
   (compile (concat "go build " args " " (buffer-file-name))))
+(setq go-play-browse-function 'browse-url)
 (load-file "~/src/golang.org/x/tools/cmd/oracle/oracle.el")
 (load-file "~/src/golang.org/x/tools/refactor/rename/rename.el")
 
