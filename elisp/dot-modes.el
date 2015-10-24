@@ -258,10 +258,14 @@
 		(set (make-local-variable 'compile-command)
 		     "go generate && go install -v && go test -v && go vet"))))
 (add-hook 'before-save-hook 'gofmt-before-save)
-(defun go-run ()
+(defun go-run (args)
   "run current buffer"
-  (interactive)
-  (compile (concat "go run " (buffer-file-name))))
+  (interactive "sArgs:")
+  (compile (concat "go run " args " " (buffer-file-name))))
+(defun go-build (args)
+  "build current buffer"
+  (interactive "sArgs:")
+  (compile (concat "go build " args " " (buffer-file-name))))
 (load-file "~/src/golang.org/x/tools/cmd/oracle/oracle.el")
 (load-file "~/src/golang.org/x/tools/refactor/rename/rename.el")
 
