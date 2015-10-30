@@ -246,6 +246,7 @@
 ;; Go mode
 ;;
 (require 'go-mode-autoloads)
+(require 'compile)
 (setq gofmt-command "goimports")
 (setq auto-mode-alist
       (append '(("\\.gox$" . go-mode)) auto-mode-alist))
@@ -256,7 +257,9 @@
 	    (local-set-key (kbd "M-.") 'godef-jump)
 	    (if (not (string-match "go" compile-command))
 		(set (make-local-variable 'compile-command)
-		     "go generate && go install -v && go test -v && go vet"))))
+		     "go generate && go install -v && go test -v && go vet"))
+	    (add-to-list 'compilation-error-regexp-alist 
+			 '("^stringer: [^:]*: \\(.*?\\):\\([0-9]+\\):" 1 2))))
 (add-hook 'before-save-hook 'gofmt-before-save)
 (defun go-run (args)
   "run current buffer"
