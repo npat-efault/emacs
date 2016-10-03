@@ -254,7 +254,8 @@
 	  (lambda ()
 	    (local-set-key (kbd "C-c C-r") 'go-remove-unused-imports)
 	    (local-set-key (kbd "C-c i") 'go-goto-imports)
-	    (local-set-key (kbd "M-.") 'godef-jump)
+					;(local-set-key (kbd "M-.") 'godef-jump)
+	    (local-set-key (kbd "M-.") 'go-guru-definition)
 	    (if (not (string-match "go" compile-command))
 		(set (make-local-variable 'compile-command)
 		     "go generate && go install -v && go test -v && go vet"))
@@ -270,8 +271,8 @@
   (interactive "sArgs:")
   (compile (concat "go build " args " " (buffer-file-name))))
 (setq go-play-browse-function 'browse-url)
-(load-file "~/src/golang.org/x/tools/cmd/oracle/oracle.el")
 (load-file "~/src/golang.org/x/tools/refactor/rename/go-rename.el")
+(require 'go-guru)
 
 ;;
 ;; Markdown Mode
