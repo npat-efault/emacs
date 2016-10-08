@@ -102,8 +102,8 @@
   "Show RFC NUM in a buffer."
   (interactive "nRFC (0 for index): ")
   (let ((url (if (zerop num)
-                 "http://www.ietf.org/iesg/1rfc_index.txt"
-               (format "http://www.ietf.org/rfc/rfc%i.txt" num)))
+		 "https://www.rfc-editor.org/in-notes/rfc-index.txt"
+               (format "https://www.rfc-editor.org/rfc/rfc%i.txt" num)))
         (buf (get-buffer-create "*RFC*")))
     (with-current-buffer buf
       (let ((inhibit-read-only t))
