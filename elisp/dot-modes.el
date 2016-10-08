@@ -262,13 +262,13 @@
 	    (add-to-list 'compilation-error-regexp-alist 
 			 '("^stringer: [^:]*: \\(.*?\\):\\([0-9]+\\):" 1 2))))
 (add-hook 'before-save-hook 'gofmt-before-save)
-(defun go-run (args)
+(defun go-run (run-args prog-args)
   "run current buffer"
-  (interactive "sArgs:")
-  (compile (concat "go run " args " " (buffer-file-name))))
+  (interactive "srun args:\nsargs:")
+  (compile (concat "go run " run-args " " (buffer-file-name) " " prog-args)))
 (defun go-build (args)
   "build current buffer"
-  (interactive "sArgs:")
+  (interactive "sbuild args:")
   (compile (concat "go build " args " " (buffer-file-name))))
 (setq go-play-browse-function 'browse-url)
 (load-file "~/src/golang.org/x/tools/refactor/rename/go-rename.el")
