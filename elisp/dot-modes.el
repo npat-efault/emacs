@@ -247,6 +247,7 @@
 ;;
 (require 'go-mode-autoloads)
 (require 'compile)
+(require 'go-dlv)
 (setq gofmt-command "goimports")
 (setq auto-mode-alist
       (append '(("\\.gox$" . go-mode)) auto-mode-alist))
@@ -258,7 +259,7 @@
 	    (local-set-key (kbd "M-.") 'go-guru-definition)
 	    (if (not (string-match "go" compile-command))
 		(set (make-local-variable 'compile-command)
-		     "go generate && go install -v && go test -v && go vet"))
+		     "go generate && go install -v && go vet && go test -v"))
 	    (add-to-list 'compilation-error-regexp-alist 
 			 '("^stringer: [^:]*: \\(.*?\\):\\([0-9]+\\):" 1 2))))
 (add-hook 'before-save-hook 'gofmt-before-save)
