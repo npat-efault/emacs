@@ -41,6 +41,7 @@
 ;;
 
 (load-library "functions")
+(load-library "dot-packages")
 (load-library "dot-misc")
 (load-library "dot-greek")
 (load-library "dot-keys")
