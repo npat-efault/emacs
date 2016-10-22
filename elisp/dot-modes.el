@@ -52,7 +52,7 @@
 	    ))
 (setq dired-guess-shell-alist-user
       (list
-       (list "\\.pdf$" "fork acroread")
+       (list "\\.pdf$" "fork mupdf")
        (list "\\.ps$" "fork gv" "lpr")
        (list "\\.dvi$" "fork xdvi" "dvips")
 ;       (list "\\.bar$";; rule with condition test
@@ -179,18 +179,6 @@
 ;; 	'("\\.xml?" . xml-mode)
 ;; 	'("\\.sgml?" . sgml-mode))
 ;;        auto-mode-alist))
-
-;;
-;; PCL-CVS mode
-;;
-
-(setq cvs-program "iancvs")
-
-;;
-;; PSVN subversion mode
-;;
-
-(require 'psvn)
 
 ;;
 ;; reStructuredText mode (takes-over text-mode)
