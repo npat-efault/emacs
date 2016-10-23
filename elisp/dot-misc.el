@@ -69,7 +69,8 @@
 ;; Start server to be used by "Edit with Emacs" google-chrome 
 ;; extension (not to be confused with running emacs in daemon mode).
 ;; See:
-;;   lib/emacs/misc/edit-server.el
+;;   lib/emacs/third-party/edit-server.el
+;;   lib/emacs/third-party/edit-server-htmlize.el
 ;;   http://www.emacswiki.org/emacs/Edit_with_Emacs
 (require 'edit-server)
 (edit-server-start)
