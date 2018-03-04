@@ -1,6 +1,8 @@
 ;;
 ;; Automatically install EMACS packages
 ;;
+;; See also: https://stackoverflow.com/questions/10092322/
+;;
 
 (require 'package)
 
@@ -14,7 +16,7 @@
              '("melpa" . "https://melpa.org/packages/"))
 
 ;; Marmalade-repo (https://marmalade-repo.org/)
-;(add-to-list 'package-archives 
+;(add-to-list 'package-archives
 ;	     '("marmalade" . "http://marmalade-repo.org/packages/"))
 
 (package-initialize)
@@ -42,8 +44,11 @@ skipped package."
 ;; Put packages you wish installed here
 ;;
 (ensure-package-installed 'go-mode)
+(ensure-package-installed 'go-playground)
 (ensure-package-installed 'go-dlv)
 (ensure-package-installed 'magit)
+(ensure-package-installed 'ws-butler)
+(ensure-package-installed 'multiple-cursors)
 
 ;; activate installed packages
 (package-initialize)

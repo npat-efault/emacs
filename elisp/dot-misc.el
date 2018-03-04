@@ -59,12 +59,12 @@
 (line-number-mode 1)
 
 ;; no TABS in files
-(setq ident-tabs-mode nil)
+(setq-default indent-tabs-mode nil)
 
 ;; no shift-select, to transient selects (we' re not winblows!)
-(when (>= emacs-major-version 23)
-  (setq shift-select-mode nil)
-  (transient-mark-mode nil))
+;(when (>= emacs-major-version 23)
+;  (setq shift-select-mode nil)
+;  (transient-mark-mode nil))
 
 ;; Start server to be used by "Edit with Emacs" google-chrome 
 ;; extension (not to be confused with running emacs in daemon mode).

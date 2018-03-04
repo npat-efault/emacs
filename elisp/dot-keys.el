@@ -17,3 +17,6 @@
 
 (global-set-key [f7] 'winner-undo)
 (global-set-key [C-f7] 'winner-redo)
+
+(global-unset-key "\C-z")
+(global-set-key "\C-z" 'undo)

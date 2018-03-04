@@ -23,7 +23,7 @@
 ;; No fontification for ReST
 (setq font-lock-global-modes '(not rst-mode ...))
 ;; Strike these keywords out!
-(font-lock-add-keywords 
+(font-lock-add-keywords
  'c-mode (list '("\\<\\(FIXME\\):" 1 font-lock-warning-face t)
 	       '("\\<\\(TODO\\):" 1 font-lock-warning-face t)))
 (font-lock-add-keywords
@@ -66,14 +66,21 @@
 ;;
 
 ;; Set tab-width and basic-offset 4 char whenever entering c-mode.
-(add-hook 'c-mode-hook 
-	  (lambda () 
+(add-hook 'c-mode-hook
+	  (lambda ()
 	    (setq tab-width 4)
 	    (setq c-basic-offset 4)))
+;; Trim trailing whitespace
+;(add-hook 'c-mode-hook
+;          (lambda ()
+;            (add-to-list 'write-file-functions 'delete-trailing-whitespace)))
+;; Trim trailing whitespace on modifield lines
+(require 'ws-butler)
+(add-hook 'c-mode-hook 'ws-butler-mode)
 ;; For java use the "java" indentation style.
 ;; For all other c-like dialects use the "linux" style
-(setq c-default-style 
-      (list '(java-mode . "java") 
+(setq c-default-style
+      (list '(java-mode . "java")
 	    '(other . "linux")))
 ;; Define command for applying settings for linux identation style
 (defun linux-c-mode ()
@@ -83,7 +90,7 @@
   (c-set-style "linux")
   (setq tab-width 8))
 ;; Arange for 'linux-c-mode' to be called when editing linux source
-(setq auto-mode-alist 
+(setq auto-mode-alist
       (append (list '(".*/linux.*/.*\\.[ch]$" . linux-c-mode)
 		    '(".*/.*linux/.*\\.[ch]$" . linix-c-mode))
 	      auto-mode-alist))
@@ -105,7 +112,7 @@
 
 (setq auto-mode-alist
       (append
-       (list '("\\.cal" . c-mode)) 
+       (list '("\\.cal" . c-mode))
        auto-mode-alist))
 
 ;;
@@ -139,12 +146,12 @@
 (autoload 'global-dictionary-tooltip-mode "dictionary"
   "Enable/disable dictionary-tooltip-mode for all buffers" t)
 ;; server
-(setq dictionary-server 
+(setq dictionary-server
       (cond ((string-match (system-name) "azure.priv.inaccessnetworks.com")
 	     "localhost")
 	    ((string-match (system-name) "inaccessnetworks.com")
 	     "orion.priv.inaccessnetworks.com")
-	    (t 
+	    (t
 	     "dict.org")))
 ;; key bindings
 (global-set-key "\C-cs" 'dictionary-search)
@@ -163,7 +170,7 @@
 ;; (setq sgml-indent-data t)
 ;; (setq sgml-set-face t)
 
-;; (setq sgml-markup-faces 
+;; (setq sgml-markup-faces
 ;;       (list '(start-tag . font-lock-keyword-face)
 ;; 	    '(end-tag . font-lock-keyword-face)
 ;; 	    '(comment . font-lock-comment-face)
@@ -198,7 +205,7 @@
 ;;
 ;; Mail mode (nor RMail)
 ;;
-(setq user-mail-address 
+(setq user-mail-address
       (if (string-match "inaccessnetworks\.com" (system-name))
 	  "npat@inaccessnetworks.com"
 	"npat@efault.net"))
@@ -225,7 +232,7 @@
 ;; SLIME mode
 ;;
 ;(defun npat-slime-config ()
-;  (setq slime-description-autofocus t))  
+;  (setq slime-description-autofocus t))
 ;(add-hook 'slime-mode-hook 'npat-slime-config)
 (setq slime-description-autofocus t)
 
@@ -239,7 +246,7 @@
 (setq gofmt-command "goimports")
 (setq auto-mode-alist
       (append '(("\\.gox$" . go-mode)) auto-mode-alist))
-(add-hook 'go-mode-hook 
+(add-hook 'go-mode-hook
 	  (lambda ()
 	    (local-set-key (kbd "C-c C-r") 'go-remove-unused-imports)
 	    (local-set-key (kbd "C-c i") 'go-goto-imports)
@@ -248,7 +255,7 @@
 	    (if (not (string-match "go" compile-command))
 		(set (make-local-variable 'compile-command)
 		     "go generate && go install -v && go vet && go test -v"))
-	    (add-to-list 'compilation-error-regexp-alist 
+	    (add-to-list 'compilation-error-regexp-alist
 			 '("^stringer: [^:]*: \\(.*?\\):\\([0-9]+\\):" 1 2))))
 (add-hook 'before-save-hook 'gofmt-before-save)
 (defun go-run (run-args prog-args)
@@ -272,3 +279,12 @@
 (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
+;;
+;; Multi-cursor mode
+;;
+(require 'multiple-cursors)
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)

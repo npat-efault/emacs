@@ -61,13 +61,17 @@
  '(browse-url-browser-function (quote browse-url-chromium))
  '(default-frame-alist (quote ((vertical-scroll-bars) (height . 40) (width . 80))))
  '(global-edit-server-edit-mode t)
- '(initial-frame-alist (quote ((menu-bar-lines . 0) (tool-bar-lines . 0) (width . 80) (height . 40))))
+ '(initial-frame-alist
+   (quote
+    ((menu-bar-lines . 0)
+     (tool-bar-lines . 0)
+     (width . 80)
+     (height . 40))))
  '(menu-bar-mode nil)
  '(minibuffer-frame-alist (quote ((width . 80) (height . 1))))
  '(scroll-bar-mode nil)
  '(select-active-regions t)
  '(tool-bar-mode nil)
- '(transient-mark-mode nil)
  '(winner-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -87,5 +91,6 @@
  '(font-lock-type-face ((t nil)))
  '(font-lock-variable-name-face ((t nil)))
  '(font-lock-warning-face ((t (:inherit error))))
- '(fringe ((t (:background "gray85" :foreground "red")))))
+ '(fringe ((t (:background "gray85" :foreground "red"))))
+ '(region ((t (:background "light steel blue" :distant-foreground "gtk_selection_fg_color")))))
 (put 'erase-buffer 'disabled nil)
